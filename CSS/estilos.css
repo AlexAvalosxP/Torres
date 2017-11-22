@@ -1,0 +1,554 @@
+*
+{
+	padding: 0px;
+	margin: 0px;
+	background: white;
+	font-family: 'Muli', sans-serif;
+}
+
+:root
+{
+	--principal: #40C3B1;
+	--claro: #A5E2DB;
+	--oscro: #21675F;
+}
+
+nav
+{
+	position: fixed;
+	margin-top: 0px;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 70px;
+	line-height: 50px;
+	color: var(--oscro);
+}
+
+.barra
+{
+	box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+}
+
+nav>i
+{
+	color: var(--principal);
+	font-size: 3em !important;
+	float: right;
+	margin-right: 25px;
+	margin-top: 10px;
+}
+
+.leftB
+{
+	float: left !important;
+	margin: 10px 0px 0px 25px !important;
+	background: none;
+	width: 70px;
+}
+
+nav>i:hover
+{
+	color: black;
+}
+
+nav>h3
+{
+	float: right;
+	font-size: 0.8em;
+}
+
+nav>button
+{
+	float: right;
+	background: none;
+	outline: none;
+	border: 1px solid var(--principal);
+	height: 30px;
+	width: 180px;
+	font-size: 1.2em;
+	border-radius: 13px;
+	margin: 10px 10px 0px 10px;
+	font-size: 0.8em;
+	color: var(--oscro);
+}
+
+.logo
+{
+	text-align: center;
+	position: relative;
+	width: 100%;
+	height: 80px;
+	margin-top: 175px;
+	color: var(--principal) !important;
+	font-family: Arial, sans-serif;
+	font-size: 2em;
+}
+
+nav>h1
+{
+	position: absolute;
+	width: 150px;
+	height: 65px;
+	line-height: 65px;
+	color: var(--principal);
+	font-family: Arial, sans-serif;
+	font-size: 2em;
+	float: left;
+	margin-left: calc(50% - 75px);
+}
+
+.login, .loginData
+{
+	margin-top: 70px;
+	position: relative;
+	width: 100%;
+	height: 150px;
+	text-align: center;
+}
+
+.loginData
+{
+	margin-top: 0px;
+	height: 200px;
+}
+
+.login>input
+{
+	float: left;
+	background: none;
+	outline: none;
+	border: 1px solid var(--principal);
+	height: 45px;
+	width: 240px;
+	font-size: 1.2em;
+	border-radius: 20px;
+	font-size: 1.2em;
+	margin-left: calc(50% - 130px);
+	margin-bottom: 25px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #385165;
+}
+
+.loginAction
+{
+	width: 100%;
+	height: 100px;
+	text-align: center;
+	margin-top: 25px;
+}
+
+.loginAction>button
+{
+	float: left;
+	background: var(--principal);
+	outline: none;
+	border: none;
+	height: 38px;
+	width: 220px;
+	font-size: 1.2em;
+	border-radius: 16px;
+	font-size: 1.4em;
+	color: white;
+	margin-left: calc(50% - 110px);
+	margin-right: calc(50% - 110px);
+}
+
+input[type = "submit"], .send
+{
+	float: left;
+	background: var(--principal);
+	outline: none;
+	border: none;
+	height: 38px;
+	width: 220px;
+	font-size: 1.2em;
+	border-radius: 16px;
+	font-size: 1.4em;
+	color: white;
+	margin-left: calc(50% - 110px);
+	margin-right: calc(50% - 110px);
+}
+
+.loginAction>a
+{
+	text-decoration: none;
+	color: var(--principal);
+	line-height: 50px;
+}
+
+nav>button:hover
+{
+	border: none;
+	background: var(--principal);
+	color: white;
+}
+
+.loginAction>a:hover
+{
+	text-decoration: underline;
+}
+
+input:hover, .left>input:hover, .right>input:hover
+{
+	border: 1px solid #4CE8D2;
+}
+
+.loginAction>input[type = "submit"]:hover, .send:hover
+{
+	border: none;
+	background: #4CE8D2;
+	color: black;
+}
+
+.left>input, .right>input
+{
+	background: none;
+	outline: none;
+	border: 1px solid var(--principal);
+	height: 35px;
+	width: 220px;
+	font-size: 1.1em;
+	border-radius: 15px;
+	font-size: 1.2em;
+	margin-bottom: 18px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: calc(25% - 90px);
+	margin-left: calc(25% - 90px);
+	color: #385165;
+}
+
+.left, .right
+{
+	width: 50%;
+	margin-top: 40px;
+	height: 180px;
+	margin-bottom: 25px;
+}
+
+.right
+{
+	float: left;
+}
+
+.left
+{
+	float: right;
+}
+
+.left>input
+{
+	float: left;
+}
+
+.right>input
+{
+	float: right;
+}
+
+section
+{
+	margin-top: 100px;
+}
+
+.Post
+{
+	width: 70%;
+	background-color: rgba(0,0,0,0.05);
+	margin-left: calc(15%);
+	padding: 5px 5px 5px 5px;
+	border-radius: 10px;
+	margin-bottom: 15px;
+	float: left;
+	color: var(--oscro);
+	box-shadow: 5px 5px 15px rgba(0,0,0,0.35);
+}
+
+.info-Post
+{
+	height: 80px; 
+	background: none;
+}
+
+.info-Post>img
+{
+	height: 70px;
+	width: 70px;
+	border-radius: 50%;
+	float: left;
+}
+
+.info-Post>h2
+{
+	float: left;
+	font-size: 1.3em;
+	margin-left: 15px;
+	width: calc(85% - 70px);
+	line-height: 45px;
+	background: none;
+}
+
+.info-Post>h3
+{
+	float: left;
+	font-size: 0.95em;
+	margin-left: 15px;
+	width: calc(85% - 70px);
+	background: none;
+}
+
+.img-Post
+{
+	width: 95%;
+	margin-left: calc(2.5% - 2.5px);
+	border: 3px solid black;
+}
+
+.img-Post>img
+{
+	width: 100%;
+}
+
+.command-Post
+{
+	height: 60px; 
+	font-size: 1.2em !important;
+	color: white;
+	width: calc(95% + 6px);
+	margin-left: calc(2.5% - 2.5px);
+	margin-top: 15px;
+	background: none;
+}
+
+.like, .comment
+{
+	margin: 1px;
+	height: 40px;
+	background: #40C3B1;
+	float: left;
+	width: calc(50% - 2px);
+	box-shadow: 3px 3px 15px rgba(33,103,95,0.60);
+}
+
+.like:hover, .comment:hover
+{
+	background: black;
+	float: left;
+	width: calc(50% - 2px);
+}
+
+.like>i, .like>h3, .comment>i, .comment>h3
+{
+	float: left;
+	margin-top: 2px;
+	line-height: 35px;
+	background: none;
+}
+
+.like>h3, .comment>h3
+{
+	width: 150px;
+	background: none;
+}
+
+.like>i, .comment>i
+{
+	width: 30px;
+	font-size: 1.5em;
+	margin-right: 0px;
+	margin-left: calc(50% - 105px);
+	background: none;
+}
+
+.like>h2, .comment>h2
+{
+	float: left;
+	width: 50px;
+	line-height: 35px;
+	font-size: 1.5em;
+	margin-right: 15px;
+	margin-left: 5px;
+	background: none;
+}
+
+.user-info
+{
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 200px;
+	z-index: -1;
+	margin-bottom: 20px;
+	color: var(--oscro);
+}
+
+.profile-photo
+{
+	float: left;
+	height: 180px;
+	width: 180px;
+	margin-left: 20px;
+}
+
+.profile-photo>img
+{
+	width: 100%;
+}
+
+.user-info>h2
+{
+	float: left;
+	font-size: 3em;
+	margin-left: 40px;
+	width: calc(100% - 240px);
+}
+
+.user-info>h3
+{
+	float: left;
+	font-size: 1.5em;
+	margin-left: 40px;
+	width: calc(100% - 240px);
+	margin-top: 10px;
+}
+
+.button-follow
+{
+	position: absolute;
+	margin-top: 120px;
+	margin-left: calc(100% - 300px);
+	border-radius: 20px;
+	box-shadow: 3px 3px 15px rgba(33,103,95,0.60);
+	z-index: -1;
+}
+
+.button-follow>h3	
+{
+	line-height: 50px;
+	text-align: center;
+	width: 200px;
+	height: 50px;
+	font-size: 2.5em;
+	background: var(--principal);
+	color: white;
+	border-radius: 20px;
+}
+
+.button-follow>h3:hover
+{
+	background: black;
+}
+
+.commentsPost
+{
+	background: none;
+}
+
+.comments, .send-comment
+{
+	background: var(--claro);
+	height: 100px;
+	width: calc(95% + 6px);
+	margin-left: calc(2.5% - 2.5px);
+	margin-top: 10px;
+	border-radius: 50px;
+	color: var(--oscro);
+}
+
+.img-comment
+{
+	width: 80px;
+	background: none;
+	float: left;
+}
+
+.img-comment>img
+{
+	width: 100%;
+	border-radius: 50%;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.comment-name
+{
+	float: left;
+	background: none;
+	margin-left: 20px;
+	margin-top: 10px;
+	width: calc(80% - 120px);
+	font-size: 1.3em;
+	height: 25px;
+}
+
+.comment-time
+{
+	float: left;
+	background: none;
+	margin-top: 10px;
+	margin-right: 10px;
+	width: 18%;
+	font-size: 0.9em;
+	height: 25px;
+}
+
+.comment-text
+{
+	float: left;
+	background: none;
+	margin-left: 20px;
+	width: calc(98% - 120px);
+	font-size: 1.1em;
+	height: 50px;
+}
+
+.send-comment>textarea
+{
+	resize: none;
+	margin-top: 20px;
+	width: calc(100% - 200px);
+	height: 60px;
+	float: left;
+	margin-left: 20px;
+}
+
+.send-comment>i
+{
+	width: 80px;
+	height: 80px;
+	float: left;
+	margin-top: 5px;
+	margin-left: 10px;
+	font-size: 5.7em;
+	background: none;
+}
+
+.desplegable
+{
+	position: fixed;
+	background: rgba(33,103,95,0.35);
+	margin-top: -30px;
+	margin-left: 60%;
+	height: calc(100% - 70px);
+	width: 40%;
+	transition: 0.3s all;
+}
+
+.oculto
+{
+	margin-left:100% !important;
+	opacity: 0;
+}
+
+.desplegable>h1
+{
+	font-size: 2.2em;
+	background: none;
+	line-height: 80px;
+	width: 100%;
+	text-align: center;
+	color: white;
+	background: rgba(0,0,0,0.15);
+}
