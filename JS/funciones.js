@@ -106,6 +106,4 @@ function passCheck()
 		document.getElementById('Pass1').style.border = '1px solid red';
 		document.getElementById('Pass2').style.border = '1px solid red';
 	}
-
-		
 }
