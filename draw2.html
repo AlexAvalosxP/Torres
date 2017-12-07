@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AnimApp</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	<script src="js/funciones.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+</head>
+<body>
+
+<nav class="barra">
+	<i class="fa fa-cog" aria-hidden="true" id="menu" onclick="openMenu()"></i>
+	<i class="fa fa-envelope" aria-hidden="true" id="invitation" onclick="openInvitation()"></i>
+	<i class="fa fa-bell" aria-hidden="true" id="notification" onclick="openNotification()"></i>
+	<i class="fa fa-pencil-square-o leftB" aria-hidden="true" onclick="draw()"></i>
+	<h1>AnimApp</h1>
+</nav>
+
+<div id="paint">
+		<canvas id="myCanvas" border="1px"></canvas>
+</div>
+
+<button id="postDraw">¡Publicar!</button>
+
+</body>
+
+<script>
+	var canvas = document.getElementById('myCanvas');
+	var ctx = canvas.getContext('2d');
+
+	var painting = document.getElementById('paint');
+	var paint_style = getComputedStyle(painting);
+	canvas.width = parseInt(paint_style.getPropertyValue('width'));
+	canvas.height = parseInt(paint_style.getPropertyValue('width')) / 2;
+
+	var color = document.getElementById('color');
+
+	var mouse = {x: 0, y: 0};
+
+	canvas.addEventListener('mousemove', function(e)
+	{
+		mouse.x = e.pageX - this.offsetLeft;
+		mouse.y = e.pageY - this.offsetTop;
+	}, false);
+
+	ctx.lineWidth = 3;
+	ctx.lineJoin = 'round';
+	ctx.lineCap = 'round';
+	ctx.strokeStyle = '#000000';
+
+	canvas.addEventListener('mousedown', function(e)
+	{
+		ctx.beginPath();
+		ctx.moveTo(mouse.x, mouse.y);
+
+		canvas.addEventListener('mousemove', onPaint, false);
+	}, false);
+
+	canvas.addEventListener('mouseup', function()
+	{
+		canvas.removeEventListener('mousemove', onPaint, false);
+	}, false);
+
+	var onPaint = function()
+	{
+		ctx.lineTo(mouse.x, mouse.y);
+		ctx.stroke();
+	};
+
+</script>
+
+</html>
