@@ -529,7 +529,7 @@ section
 {
 	position: fixed;
 	background: rgba(33,103,95,0.35);
-	margin-top: -30px;
+	top: 70px;
 	margin-left: 60%;
 	height: calc(100% - 70px);
 	width: 40%;
@@ -638,4 +638,9 @@ canvas
 	background: none;
 	text-align: center;
 	line-height: 30px;
+}
+
+#paintbrush, #black
+{
+	border-radius: 30%;
 }

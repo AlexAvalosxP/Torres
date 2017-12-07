@@ -85,7 +85,7 @@ function commentPost()
 
 function draw()
 {
-	window.location.assign('draw2.html');
+	window.location.assign('draw.html');
 }
 
 function passCheck()
