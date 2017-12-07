@@ -18,8 +18,31 @@
 	<h1>AnimApp</h1>
 </nav>
 
+<div id="leftControl">
+	<div class="iconP" id="paintbrush" onclick="changeColor('#000000')"><i class="fa fa-paint-brush" aria-hidden="true"></i></div>
+	<div class="iconP" id="eraser" onclick="changeColor('#FFFFFF')"><i class="fa fa-eraser" aria-hidden="true"></i></div>
+	<h3>Anchura</h3>
+	<div class="iconP" id="plus" onclick="plusWidth()"><i class="fa fa-plus" aria-hidden="true"></i></i></div>
+	<div class="iconP" id="minus" onclick="minusWidth()"><i class="fa fa-minus" aria-hidden="true"></i></i></div>
+</div>
 <div id="paint">
 		<canvas id="myCanvas" border="1px"></canvas>
+</div>
+<div id="rightControl">
+	<div class="iconP" id="black" onclick="changeColor(this.id)" style="background:black"></div>
+	<div class="iconP" id="grey" onclick="changeColor(this.id)" style="background:grey"></div>
+	<div class="iconP" id="#54250A" onclick="changeColor(this.id)" style="background:#54250A"></div>
+	<div class="iconP" id="brown" onclick="changeColor(this.id)" style="background:brown"></div>
+	<div class="iconP" id="red" onclick="changeColor(this.id)" style="background:red"></div>
+	<div class="iconP" id="orange" onclick="changeColor(this.id)" style="background:orange"></div>
+	<div class="iconP" id="yellow" onclick="changeColor(this.id)" style="background:yellow"></div>
+	<div class="iconP" id="green" onclick="changeColor(this.id)" style="background:green"></div>
+	<div class="iconP" id="#36AB9C" onclick="changeColor(this.id)" style="background:#36AB9C"></div>
+	<div class="iconP" id="#AEF7FB" onclick="changeColor(this.id)" style="background:#AEF7FB"></div>
+	<div class="iconP" id="blue" onclick="changeColor(this.id)" style="background:blue"></div>
+	<div class="iconP" id="purple" onclick="changeColor(this.id)" style="background:purple"></div>
+	<div class="iconP" id="#F11D7C" onclick="changeColor(this.id)" style="background:#F11D7C"></div>
+	<div class="iconP" id="pink" onclick="changeColor(this.id)" style="background:pink"></div>
 </div>
 
 <button id="postDraw">¡Publicar!</button>
@@ -27,13 +50,20 @@
 </body>
 
 <script>
+
 	var canvas = document.getElementById('myCanvas');
 	var ctx = canvas.getContext('2d');
 
 	var painting = document.getElementById('paint');
 	var paint_style = getComputedStyle(painting);
-	canvas.width = parseInt(paint_style.getPropertyValue('width'));
-	canvas.height = parseInt(paint_style.getPropertyValue('width')) / 2;
+	width = parseInt(paint_style.getPropertyValue('width'));
+	canvas.width = width;
+	canvas.height = width / 2;
+
+	// Agregado
+	document.getElementById('leftControl').style.height = "calc(" + width / 2 + "px - 20px)";
+	document.getElementById('rightControl').style.height = "calc(" + width / 2 + "px - 20px)";
+	//
 
 	var color = document.getElementById('color');
 
@@ -68,6 +98,35 @@
 		ctx.lineTo(mouse.x, mouse.y);
 		ctx.stroke();
 	};
+
+
+	function changeColor(id)
+	{	
+		console.log(id);
+		ctx.strokeStyle = id;
+	}
+
+	function plusWidth()
+	{
+		if (ctx.lineWidth < 15) 
+		{
+			ctx.lineWidth++;
+		}
+		console.log(ctx.lineWidth);
+		if (ctx.lineWidth == 15) { document.getElementById('plus').style.background = 'grey';} else {  document.getElementById('plus').style.background = '#40C3B1';}
+		if (ctx.lineWidth == 1) { document.getElementById('minus').style.background = 'grey';} else {  document.getElementById('minus').style.background = '#40C3B1';}
+	}
+
+	function minusWidth()
+	{
+		if (ctx.lineWidth > 1)
+		{
+			ctx.lineWidth--;
+		}
+		if (ctx.lineWidth == 15) { document.getElementById('plus').style.background = 'grey';} else {  document.getElementById('plus').style.background = '#40C3B1';}
+		if (ctx.lineWidth == 1) { document.getElementById('minus').style.background = 'grey';} else {  document.getElementById('minus').style.background = '#40C3B1';}
+		console.log(ctx.lineWidth);
+	}
 
 </script>
 

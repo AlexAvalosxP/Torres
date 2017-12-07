@@ -557,7 +557,7 @@ section
 {
 	float: left;
 	width: 70%;
-	margin-left: calc(15%);
+	margin-left: 15%;
 	margin-top: 95px;
 }
 
@@ -586,4 +586,56 @@ canvas
 #postDraw:hover
 {
 	background: black;
+}
+
+#leftControl, #rightControl
+{
+	position: absolute;
+	top: 95px;
+	width: 12%;
+	height: 50%;
+	background: rgba(0, 0, 0, 0.1);
+	overflow-y: scroll;
+	padding-top: 20px;
+}
+
+#leftControl
+{
+	left: 1.5%;
+}
+
+#rightControl
+{
+	left: 86.5%;
+}
+
+.iconP
+{
+	float: left;
+	height: 50px;
+	width: 50px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	background: var(--principal);
+	text-align: center;
+	line-height: 50px;
+	font-size: 2.2em;
+}
+
+.iconP>i
+{
+	background: none;
+	color: white;
+}
+
+.iconP:hover
+{
+	border-radius: 30%;
+}
+
+#leftControl>h3
+{
+	background: none;
+	text-align: center;
+	line-height: 30px;
 }
