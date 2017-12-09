@@ -644,3 +644,8 @@ canvas
 {
 	border-radius: 30%;
 }
+
+a
+{
+	float: left;
+}

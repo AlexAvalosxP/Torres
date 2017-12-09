@@ -20,15 +20,24 @@
 
 <form action="php/login.php" method="POST">
 <div class="login">
-	<input type="text" name="u" placeholder="Username">
+	<input type="text" name="u" id='u' placeholder="Username">
 	<input type="password" name="p" placeholder="Password">
 </div>
 
 <div class="loginAction">
-	<input type="submit" name="btnLogin" value="Iniciar Sesión">
+	<input type="submit" name="btnLogin" value="Iniciar Sesión" onclick="saveUser()">
 	<a href="#">Olvidé mi contraseña</a>
 </div>
 </form>
+
+<script>
+	function saveUser()
+	{
+		u = document.getElementById('u').value;
+
+		localStorage.setItem('username', u);
+	}
+</script>
 
 </body>
 </html>

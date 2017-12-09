@@ -19,51 +19,18 @@
 </nav>
 
 <section>
-	<div class="Post">
-		<div class="info-Post" onclick="navegar('profile.html')">
-			<img id="user-img" src="sources/user-default.jpg">
-			<h2 id="user-name">Alejandro Ávalos</h2>
-			<h3 id="pub-time">Hace: #min</h3>
-		</div>
-		<div class="img-Post">
-			<img id="" src="sources/groot.jpg">
-		</div>
-		<div class="command-Post">
-			<div class="like" onclick="likePost()"><i class="fa fa-heart-o" aria-hidden="true"></i><h2 id="numlikes">0</h2><h3>¡Me Anima!</h3></div>
-			<div class="comment" onclick="commentPost()"><i class="fa fa-comment-o" aria-hidden="true"></i><h2 id="numComents">0</h2><h3>Comentar</h3></div>
-		</div>
-	</div>
-	<div class="Post">
-		<div class="info-Post" onclick="navegar('profile.html')">
-			<img id="user-img" src="sources/user-default.jpg">
-			<h2 id="user-name">Alejandro Ávalos</h2>
-			<h3 id="pub-time">Hace: #min</h3>
-		</div>
-		<div class="img-Post">
-			<img id="" src="sources/groot.jpg">
-		</div>
-		<div class="command-Post">
-			<div class="like" onclick="likePost()"><i class="fa fa-heart-o" aria-hidden="true"></i><h2 id="numlikes">0</h2><h3>¡Me Anima!</h3></div>
-			<div class="comment" onclick="commentPost()"><i class="fa fa-comment-o" aria-hidden="true"></i><h2 id="numComents">0</h2><h3>Comentar</h3></div>
-		</div>
-	</div>
-	<div class="Post">
-		<div class="info-Post" onclick="navegar('profile.html')">
-			<img id="user-img" src="sources/user-default.jpg">
-			<h2 id="user-name">Alejandro Ávalos</h2>
-			<h3 id="pub-time">Hace: #min</h3>
-		</div>
-		<div class="img-Post">
-			<img id="" src="sources/groot.jpg">
-		</div>
-		<div class="command-Post">
-			<div class="like" onclick="likePost()"><i class="fa fa-heart-o" aria-hidden="true"></i><h2 id="numlikes">0</h2><h3>¡Me Anima!</h3></div>
-			<div class="comment" onclick="commentPost()"><i class="fa fa-comment-o" aria-hidden="true"></i><h2 id="numComents">0</h2><h3>Comentar</h3></div>
-		</div>
-	</div>
+
 </section>
 
 <div class="desplegable oculto"></div>
 </body>
+
+<script>
+	window.addEventListener('load', cargarPosts, true);
+
+	user = localStorage.getItem('username');
+	console.log(user);
+
+</script>
 
 </html>

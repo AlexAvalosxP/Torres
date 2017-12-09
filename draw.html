@@ -45,9 +45,19 @@
 	<div class="iconP" id="pink" onclick="changeColor(this.id)" style="background:pink"></div>
 </div>
 
-<button id="postDraw">¡Publicar!</button>
+<button id="postDraw" onclick="postDraw()">¡Publicar!</button>
+
+<a id="download" 
+  onclick="var download = document.getElementById('download');
+  download.href = document.getElementById('myCanvas').toDataURL();
+  download.download='imageName.png'">
+Save Canvas Image</a>
 
 <div class="desplegable oculto"></div>
+
+<form action="php/postDraw.php" method="POST" name="form1">
+	<input type="text" name="img" id="my_hidden" hidden>
+</form>
 
 </body>
 
@@ -63,6 +73,9 @@
 	width = parseInt(paint_style.getPropertyValue('width'));
 	canvas.width = width;
 	canvas.height = width / 2;
+
+	ctx.fillStyle = '#FFFFFF';
+	ctx.fillRect(0,0, canvas.width, canvas.height);
 
 	// Agregado
 	document.getElementById('leftControl').style.height = "calc(" + width / 2 + "px - 20px)";
@@ -213,6 +226,22 @@
 		if (ctx.lineWidth == 15) { document.getElementById('plus').style.background = 'grey';} else {  document.getElementById('plus').style.background = '#40C3B1';}
 		if (ctx.lineWidth == 1) { document.getElementById('minus').style.background = 'grey';} else {  document.getElementById('minus').style.background = '#40C3B1';}
 		console.log(ctx.lineWidth);
+	}
+
+	function postDraw()
+	{
+		var canvas  = document.getElementById("myCanvas");
+		document.getElementById('my_hidden').value = canvas.toDataURL('image/png');
+		document.forms["form1"].submit();
+		/*
+		var canvas  = document.getElementById("myCanvas");
+		var dataURL = canvas.toDataURL();
+
+		ajax = new XMLHttpRequest();
+		ajax.open('GET', 'PHP/postDraw.php', true);
+		ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		ajax.send("d=" + dataURL);
+		*/
 	}
 
 </script>
