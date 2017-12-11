@@ -11,26 +11,25 @@
 
 	$r = mysqli_num_rows($PassQuery);
 
+	$passTrue = 0;
+
 	if($r > 0)
 	{
 		if ($Pass == $PassQuery->fetch_object()->pass)
 		{
-			header("location: ../animapp.html");
+			$passTrue = 1;
+			echo json_encode(array("pass"=>$passTrue));
 		}
 		else
 		{
-			echo'<script type="text/javascript">
-			window.location.href="../index.html";
-        	alert("Contraseña Incorrecta");
-        	</script>';
+			 echo json_encode(array("pass"=>$passTrue));
+
 		}
 	}
 	else
 	{
-		echo'<script type="text/javascript">
-		window.location.href="../index.html";
-        alert("El Usuario no existe");
-        </script>';
+		echo json_encode(array("pass"=>$passTrue));
 	}
+	
 
  ?>

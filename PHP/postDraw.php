@@ -1,6 +1,7 @@
 <?php 
 
 	$img = $_POST['img'];
+	$username = $_POST['username'];
 
 	//Guardado de Imagen
 
@@ -28,6 +29,10 @@
 
 	$con = new mysqli('localhost','root','','animapp');
 
+	$query2 = "SELECT idUsuario FROM usuario WHERE username = '$username'";
+	$res = $con->query($query2);
+	$id = $res->fetch_array();
+
 	$query = "INSERT INTO post VALUES($newIdP, '$Date', 0, 'post" . $newIdP . ".png')";
 
 	if($con->query($query))
@@ -44,14 +49,14 @@
 		echo $con->error . "<br />";
 	}
 
-	$query2 = "INSERT INTO usuariospost VALUES('', 1, $newIdP, 1)";
+	$query2 = "INSERT INTO usuariospost VALUES('', $id[0], $newIdP, 1)";
 
 	if($con->query($query2))
 	{
 
 		echo'<script type="text/javascript">
         alert("¡Post Publicado!");
-        window.location.href="../animapp.html";
+        window.location.href="../index.html";
         </script>';
         
 	}
@@ -60,12 +65,4 @@
 		echo $con->error . "<br />";
 	}
 
-	//header('Location: ../animapp.html');
-
-	//$fp = fopen("../sources/image.jpg", "w");
-	//fwrite($fp, $data);
-	//fclose($fp);
-
-	//$upload_dir = somehow_get_upload_dir();  //implement this function yourself
-//$img = $_POST['my_hidden'];
  ?>

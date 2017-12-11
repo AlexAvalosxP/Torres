@@ -3,7 +3,63 @@ function navegar(direccion, id)
 	window.location.assign(direccion);
 }
 
+function verificarLog()
+{
+	if (!localStorage.getItem('username'))
+	{
+		window.location.assign('login.html');
+	}
+}
+
+function login()
+{
+	u = document.getElementById('u');
+	p = document.getElementById('p');
+
+	uVal = u.value;
+	pVal = p.value;
+
+	var lgin = new XMLHttpRequest();
+
+	lgin.open("POST", "php/login.php", true);
+  	lgin.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  	lgin.send("u=" + uVal + "&p=" + pVal);
+
+  	var xhttp = new XMLHttpRequest();
+  	lgin.onreadystatechange = function() 
+  	{
+    	if (lgin.readyState == 4 && lgin.status == 200) 
+    	{
+      		check = JSON.parse(lgin.responseText);
+      		if (check.pass == 1)
+      		{
+      			console.log('Acceso');
+      			localStorage.setItem('username', uVal);
+      			window.location.assign('index.html');
+      		}
+      		else
+      		{
+      			console.log('No Acceso');
+      			u.style.border = "1px solid red";
+      			p.style.border = "1px solid red";
+      			u.style.transition = "0.5s all";
+      			p.style.transition = "0.5s all";
+      	
+					setTimeout(function(){
+						u.style.marginLeft = "calc(50% - 130px)";
+						p.style.marginLeft = "calc(50% - 130px)";
+					}, 200);
+					u.style.marginLeft = "calc(50% - 100px)";
+					p.style.marginLeft = "calc(50% - 100px)";
+
+      		}
+    	}
+  	};
+}
+
 function cargarPosts(){
+
+	verificarLog();
 
 	user = localStorage.getItem('username');
 	console.log(user);
@@ -17,7 +73,7 @@ function cargarPosts(){
 			console.log(post)
 		for(i = post.length - 1; i >= 0; i--){
 			div = '<div class="Post">' +
-			'<div class="info-Post" onclick="navegar(\'profile.html?u=' + post[i].username + '\')">' +
+			'<div class="info-Post" onclick="navegar(\'profile.php?u=' + post[i].username + '\')">' +
 			'<img id="user-img" src="sources/user-default.jpg">' +
 			'<h2 id="user-name">' + post[i].nombre + '</h2>' +
 			'<h3 id="pub-time">' + post[i].fecha + '</h3>' +
@@ -42,6 +98,7 @@ function cargarPosts(){
 		}
 		}
 	}
+
 }
 
 function openMenu()
@@ -166,4 +223,47 @@ function passCheck()
 		document.getElementById('Pass1').style.border = '1px solid red';
 		document.getElementById('Pass2').style.border = '1px solid red';
 	}
+}
+
+function cargarPerfil(id)
+{
+	Ajax = new XMLHttpRequest();
+	Ajax.open('GET','php/postsPerfil.php?idU=' + id);
+	Ajax.send();
+	Ajax.onreadystatechange = function(){
+		if (Ajax.readyState == 4 && Ajax.status == 200){
+			post = JSON.parse(Ajax.responseText);
+			console.log(post)
+		for(i = post.length - 1; i >= 0; i--){
+			div = '<div class="Post">' +
+			'<div class="info-Post" onclick="navegar(\'profile.php?u=' + post[i].username + '\')">' +
+			'<img id="user-img" src="sources/user-default.jpg">' +
+			'<h2 id="user-name">' + post[i].nombre + '</h2>' +
+			'<h3 id="pub-time">' + post[i].fecha + '</h3>' +
+		'</div>' +
+		'<div class="img-Post">' +
+			'<img id="" src="sources/posts/' + post[i].dibujo + '">' +
+		'</div>' +
+		'<div class="command-Post">';
+
+			if(post[i].likeBool == 1)
+			{
+				div = div + '<div class="like" id="' + post[i].id + '" style="background:black"><i class="fa fa-heart-o" aria-hidden="true"></i><h2 id="numlikes' + post[i].id + '">' + post[i].likes + '</h2><h3>¡Me Anima!</h3></div>';
+			}
+			else
+			{
+				div = div + '<div class="like" id="' + post[i].id + '" onclick="likePost(this.id)"><i class="fa fa-heart-o" aria-hidden="true"></i><h2 id="numlikes' + post[i].id + '">' + post[i].likes + '</h2><h3>¡Me Anima!</h3></div>';
+			}
+			div = div + '<div class="comment" id="' + post[i].id + '" onclick="commentPost(this.id)"><i class="fa fa-comment-o" aria-hidden="true"></i><h2 id="numComents">0</h2><h3>Comentar</h3></div>'
+		'</div>' +
+		'</div>"';
+		document.querySelector('section').innerHTML += div;
+
+		document.getElementById('profile-user').innerHTML = post[i].nombreUs;
+		document.getElementById('profile-time').innerHTML = "Miembro desde: " + post[i].fechaReg;
+		document.getElementById('profile-pub').innerHTML = "Publicaciones: " + post[i].numPosts;
+		document.getElementById('profile-followers').innerHTML = "Seguidores: " + post[i].numFoll;
+		}
+		}
+	}	
 }

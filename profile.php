@@ -17,10 +17,9 @@
 	<i class="fa fa-pencil-square-o leftB" aria-hidden="true" onclick="draw()"></i>
 	<h1>AnimApp</h1>
 </nav>
-
 <div class="user-info">
 	<div class="profile-photo"><img src="sources/user-default.jpg"></div>
-	<h2 class="profile-user">Alejandro Ávalos</h2>
+	<h2 class="profile-user" id="profile-user"></h2>
 	<h3 id="profile-time">Miembro desde: 19/11/2017</h3>
 	<h3 id="profile-pub">Publicaciones: 1</h3>
 	<h3 id="profile-followers">Seguidores: 0</h3>
@@ -29,23 +28,20 @@
 <div class="button-follow" onclick="follow()"><h3>Follow</h3></div>
 
 <section>
-	<div class="Post">
-		<div class="info-Post">
-			<img id="user-img" src="sources/user-default.jpg">
-			<h2 id="user-name">Alejandro Ávalos</h2>
-			<h3 id="pub-time">Hace: #min</h3>
-		</div>
-		<div class="img-Post">
-			<img id="" src="sources/groot.jpg">
-		</div>
-		<div class="command-Post">
-			<div class="like" onclick="likePost()"><i class="fa fa-heart-o" aria-hidden="true"></i><h2 id="numlikes">200</h2><h3>¡Me Anima!</h3></div>
-			<div class="comment" onclick="commentPost()"><i class="fa fa-comment-o" aria-hidden="true"></i><h2 id="numComents">1000</h2><h3>Comentar</h3></div>
-		</div>
-	</div>
+
 <section>
 
 <div class="desplegable oculto"></div>
 
+<input type="text" hidden value="<?php echo $_GET['u'];?>" id="id">
+
 </body>
+
+<script>
+	window.addEventListener('load', verificarLog, true);
+
+	id = document.getElementById('id').value;
+	cargarPerfil(id);
+</script>
+
 </html>

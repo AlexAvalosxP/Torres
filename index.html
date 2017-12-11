@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>AnimApp</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 	<script src="js/funciones.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-	<title>AnimApp - Inicia Sesión</title>
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
 </head>
 <body>
 
-<nav>
-	<button onclick="navegar('signup.html')">Regístrate</button>
-	<h3>¿Aún no tienes una cuenta?</h3>
+<nav class="barra">
+	<i class="fa fa-cog" aria-hidden="true" id="menu" onclick="openMenu()"></i>
+	<i class="fa fa-envelope" aria-hidden="true" id="invitation" onclick="openInvitation()"></i>
+	<i class="fa fa-bell" aria-hidden="true" id="notification" onclick="openNotification()"></i>
+	<i class="fa fa-pencil-square-o leftB" aria-hidden="true" onclick="draw()"></i>
+	<h1>AnimApp</h1>
 </nav>
 
-<div class="logo">
-	<h1>AnimApp</h1>
-</div>
+<section>
 
-<form action="php/login.php" method="POST">
-<div class="login">
-	<input type="text" name="u" id='u' placeholder="Username">
-	<input type="password" name="p" placeholder="Password">
-</div>
+</section>
 
-<div class="loginAction">
-	<input type="submit" name="btnLogin" value="Iniciar Sesión" onclick="saveUser()">
-	<a href="#">Olvidé mi contraseña</a>
-</div>
-</form>
+<div class="desplegable oculto"></div>
+</body>
 
 <script>
-	function saveUser()
-	{
-		u = document.getElementById('u').value;
+	window.addEventListener('load', cargarPosts, true);
 
-		localStorage.setItem('username', u);
-	}
+	user = localStorage.getItem('username');
+	console.log(user);
+
 </script>
 
-</body>
 </html>
