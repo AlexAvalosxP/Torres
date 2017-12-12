@@ -15,7 +15,7 @@
 	<i class="fa fa-envelope" aria-hidden="true" id="invitation" onclick="openInvitation()"></i>
 	<i class="fa fa-bell" aria-hidden="true" id="notification" onclick="openNotification()"></i>
 	<i class="fa fa-pencil-square-o leftB" aria-hidden="true" onclick="draw()"></i>
-	<h1>AnimApp</h1>
+	<h1 onclick="navegar('index.html')">AnimApp</h1>
 </nav>
 
 <section>
@@ -26,31 +26,15 @@
 			<h3 id="pub-time">Hace: #min</h3>
 		</div>
 		<div class="img-Post">
-			<img id="" src="sources/groot.jpg">
+			<img id="img" src="sources/groot.jpg">
 		</div>
 		<div class="command-Post">
-			<div class="like" onclick="likePost()"><i class="fa fa-heart-o" aria-hidden="true"></i><h2 id="numlikes">200</h2><h3>¡Me Anima!</h3></div>
+			<div class="like" id="<?php echo $_GET['id']; ?>" onclick="likePost(this.id)"><i class="fa fa-heart-o" aria-hidden="true"></i><h2 id="numlikes">200</h2><h3>¡Me Anima!</h3></div>
 			<div class="comment" onclick="commentPost()"><i class="fa fa-comment-o" aria-hidden="true"></i><h2 id="numComents">1000</h2><h3>Comentar</h3></div>
 		</div>
 
 		<div class="commentsPost">
-			<div class="comments">
-				<div class="img-comment"><img src="sources/user-default.jpg"></div>
-				<h2 class="comment-name">Alejandro Ávalos</h2>
-				<h3 class="comment-time">Hace: #min</h3>
-				<h3 class="comment-text">I am groooooot!</h3>
-			</div>
-			<div class="comments">
-				<div class="img-comment"><img src="sources/user-default.jpg"></div>
-				<h2 class="comment-name">Alejandro Ávalos</h2>
-				<h3 class="comment-time">Hace: #min</h3>
-				<h3 class="comment-text">I am groooooot!</h3>
-			</div>
-			<div class="send-comment">
-				<div class="img-comment"><img src="sources/user-default.jpg"></div>
-				<textarea id="commentary"></textarea>
-				<i class="fa fa-arrow-circle-right" aria-hidden="true" onclick="sendComment()"></i>
-			</div>
+			
 		</div>
 
 	</div>
@@ -58,10 +42,13 @@
 
 <div class="desplegable oculto"></div>
 
+<input type="text" id="idP" value="<?php echo $_GET['id']; ?>" hidden>
+
 </body>
 
 <script>
 	window.addEventListener('load', verificarLog, true);
+	cargarPostX(document.getElementById('idP').value);
 </script>
 
 </html>

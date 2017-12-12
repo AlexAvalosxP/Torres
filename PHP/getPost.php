@@ -1,17 +1,14 @@
 <?php
 	$conexion = new mysqli('localhost','root','','animapp');
 	
-	$idU = $_GET['idU'];
-	$query2 = "SELECT idUsuario, nombre, apellidos, fechaRegistro, numFollows, numPosts FROM usuario WHERE username = '$idU'";
-	$respuesta4 = $conexion->query($query2);
-	$id = $respuesta4->fetch_array();
+	$idP = $_GET['idP'];
 
 	$usernameAct = $_GET['username'];
 	$query3 = "SELECT idUsuario FROM usuario WHERE username = '$usernameAct'";
 	$respuesta5 = $conexion->query($query3);
 	$idAct = $respuesta5->fetch_array();
 
-	$posts = "SELECT p.* FROM post p, usuariospost up WHERE p.idPost = up.idPost AND up.idUsuario = $id[0]";
+	$posts = "SELECT p.*, up.idUsuario FROM post p, usuariospost up WHERE p.idPost = up.idPost AND p.idPost = $idP";
 	$respuesta = $conexion->query($posts);
 	$arreglo = array();
 	while($post = $respuesta->fetch_object()) {
@@ -41,11 +38,7 @@
 			"likes"=>mysqli_num_rows($respuesta3),
 			"nombre"=> $nombre->nombre . ' ' . $nombre->apellidos,
 			"username" => $nombre->username,
-			"likeBool" => $likeBool,
-			"nombreUs"=> $id[1] . ' ' . $id[2],
-			"fechaReg"=> $id[3],
-			"numFoll"=> $id[4],
-			"numPosts"=> $id[5]
+			"likeBool" => $likeBool
 		));
 	}
 	//IMPRIMIR LA RESPUESTA EN JSON

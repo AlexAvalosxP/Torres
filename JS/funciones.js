@@ -178,7 +178,76 @@ function closeNotification()
 
 function commentPost(id)
 {
-	window.location.assign('post.html?id=' + id);
+	window.location.assign('post.php?id=' + id);
+}
+
+function cargarPostX(id)
+{
+	user = localStorage.getItem('username');
+	Ajax = new XMLHttpRequest();
+	Ajax.open('GET','php/getPost.php?idP=' + id + '&username=' + user);
+	Ajax.send();
+	Ajax.onreadystatechange = function(){
+		if (Ajax.readyState == 4 && Ajax.status == 200){
+			post = JSON.parse(Ajax.responseText);
+			document.getElementById('user-name').innerHTML = post[0].nombre;
+			document.getElementById('pub-time').innerHTML = post[0].fecha;
+			document.getElementById('img').src = 'sources/posts/' + post[0].dibujo;
+			document.getElementById('numlikes').innerHTML = post[0].likes;
+			document.getElementById('numComents').innerHTML = 0;
+			document.getElementById('numlikes').innerHTML = post[0].likes;
+			document.getElementById('numlikes').id = 'numlikes' + id;
+			if(post[0].likeBool == 1)
+			{
+				postMod = document.getElementById(id);
+				postMod.style.background = 'black';
+				postMod.removeAttribute('onclick');
+			}
+		}
+	}
+
+	AjaxC = new XMLHttpRequest();
+	AjaxC.open('GET','php/comment.php?idP=' + id);
+	AjaxC.send();
+	AjaxC.onreadystatechange = function(){
+		if (AjaxC.readyState == 4 && AjaxC.status == 200){
+			comment = JSON.parse(AjaxC.responseText);
+			for(i = 0; i < comment.length; i++)
+			{
+				comDiv = '<div class="comments">' +
+				'<div class="img-comment"><img src="sources/user-default.jpg"></div>' +
+				'<h2 class="comment-name">' + comment[i].nombre + '</h2>' +
+				'<h3 class="comment-time">' + comment[i].fechaP + '</h3>' +
+				'<h3 class="comment-text">' + comment[i].comentario + '</h3>' +
+			'</div>';
+			document.querySelector('.commentsPost').innerHTML += comDiv;
+			}
+			document.querySelector('.commentsPost').innerHTML += '<div class="send-comment">' +
+				'<div class="img-comment"><img src="sources/user-default.jpg"></div>' +
+				'<textarea id="commentary"></textarea>' +
+				'<i class="fa fa-arrow-circle-right" aria-hidden="true" onclick="sendComment()"></i>' +
+			'</div>;';
+		}
+	}
+
+}
+
+function sendComment()
+{
+	postId = document.querySelector('.like').id;
+	user = localStorage.getItem('username');
+	commentario = document.getElementById('commentary').value;
+
+	AjaxCom = new XMLHttpRequest();
+	AjaxCom.open('GET','php/addComment.php?un=' + user + '&ps=' + postId + '&com=' + commentario);
+	AjaxCom.send();
+	
+	AjaxCom.onreadystatechange = function(){
+		if (AjaxCom.readyState == 4 && AjaxCom.status == 200)
+		{
+			window.location.assign('post.php?id=' + postId);
+		}
+	}
 }
 
 function likePost(id)
@@ -227,8 +296,9 @@ function passCheck()
 
 function cargarPerfil(id)
 {
+	user = localStorage.getItem('username');
 	Ajax = new XMLHttpRequest();
-	Ajax.open('GET','php/postsPerfil.php?idU=' + id);
+	Ajax.open('GET','php/postsPerfil.php?idU=' + id + '&username=' + user);
 	Ajax.send();
 	Ajax.onreadystatechange = function(){
 		if (Ajax.readyState == 4 && Ajax.status == 200){

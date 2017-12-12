@@ -509,10 +509,14 @@ section
 {
 	resize: none;
 	margin-top: 20px;
-	width: calc(100% - 200px);
-	height: 60px;
+	width: calc(100% - 220px);
+	height: 40px;
 	float: left;
 	margin-left: 20px;
+	background: #C9EDE9;
+	padding: 10px 10px 10px 10px;
+	font-size: 1.1em;
+	color: var(--oscro);
 }
 
 .send-comment>i

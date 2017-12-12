@@ -15,7 +15,7 @@
 	<i class="fa fa-envelope" aria-hidden="true" id="invitation" onclick="openInvitation()"></i>
 	<i class="fa fa-bell" aria-hidden="true" id="notification" onclick="openNotification()"></i>
 	<i class="fa fa-pencil-square-o leftB" aria-hidden="true" onclick="draw()"></i>
-	<h1>AnimApp</h1>
+	<h1 onclick="navegar('index.html')">AnimApp</h1>
 </nav>
 <div class="user-info">
 	<div class="profile-photo"><img src="sources/user-default.jpg"></div>
