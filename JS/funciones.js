@@ -35,6 +35,7 @@ function login()
       		{
       			console.log('Acceso');
       			localStorage.setItem('username', uVal);
+      			localStorage.setItem('name', check.nombre);
       			window.location.assign('index.html');
       		}
       		else
@@ -63,6 +64,9 @@ function cargarPosts(){
 
 	user = localStorage.getItem('username');
 	console.log(user);
+
+	name = localStorage.getItem('name');
+	console.log(name);
 
 	Ajax = new XMLHttpRequest();
 	Ajax.open('GET','php/posts.php?idU=' + user);
@@ -106,9 +110,18 @@ function openMenu()
 	closeInvitation();
 	closeNotification();
 	menu = document.querySelector('.desplegable');
+	user = localStorage.getItem('username');
+	name = localStorage.getItem('name');
 
 	//Funcionalidad
 	menu.innerHTML = "<h1 id='titulo'>Menu</h1>";
+
+		menu.innerHTML= "<div class='UserInfoMenu'>" + 
+			"<div class='menuImg'><img src='sources/user-default.jpg'></div>" +
+			"<div class='menuName'>" + name + "</div>" +
+			"<div class='menuUsername'>" + user + "</div>" +
+			"</div>" +
+			"<div class='logOut' onclick='logout()'>Cerrar Sesión</div>";
 
 	menu.classList.remove('oculto');
 	setMenu = document.getElementById('menu');
@@ -336,4 +349,10 @@ function cargarPerfil(id)
 		}
 		}
 	}	
+}
+
+function logout()
+{
+	localStorage.clear();
+	window.location.assign('login.html');
 }

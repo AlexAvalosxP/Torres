@@ -22,11 +22,11 @@
 	<div class="Post">
 		<div class="info-Post">
 			<img id="user-img" src="sources/user-default.jpg">
-			<h2 id="user-name">Alejandro Ávalos</h2>
-			<h3 id="pub-time">Hace: #min</h3>
+			<h2 id="user-name"></h2>
+			<h3 id="pub-time"></h3>
 		</div>
 		<div class="img-Post">
-			<img id="img" src="sources/groot.jpg">
+			<img id="img" src="">
 		</div>
 		<div class="command-Post">
 			<div class="like" id="<?php echo $_GET['id']; ?>" onclick="likePost(this.id)"><i class="fa fa-heart-o" aria-hidden="true"></i><h2 id="numlikes">200</h2><h3>¡Me Anima!</h3></div>

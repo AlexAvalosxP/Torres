@@ -650,3 +650,60 @@ canvas
 	border-radius: 30%;
 }
 
+.menuImg
+{
+	height: 100px;
+	width: 100px;
+	float: left;
+	margin-top: 10px;
+	margin-left: 10px;
+	border-radius: 50%;
+}
+
+.menuImg>img
+{
+	width: 100%;
+	border-radius: 50%;
+}
+
+.menuName, .menuUsername
+{
+	float: left;
+	height: 45px;
+	width: calc(100% - 140px);
+	background:none;
+	margin-top: 10px;
+	line-height: 45px;
+	padding-right: 10px;
+	padding-left: 10px;
+	color: var(--oscro);
+}
+
+.menuName
+{
+	font-size: 1.4em;
+}
+
+.UserInfoMenu
+{
+	height: 120px;
+	width: calc(100% - 10px);
+	margin-top: 5px;
+	margin-left: 5px;
+	background: rgba(255,255,255,0.5);
+	border-radius: 20px;
+}
+
+.logOut
+{
+	height: 60px;
+	width: calc(100% - 10px);
+	margin-top: 5px;
+	margin-left: 5px;
+	background: rgba(0,0,0,0.5);
+	border-radius: 20px;
+	color: var(--claro);
+	line-height: 60px;
+	text-align: center;
+	font-size: 1.5em;
+}

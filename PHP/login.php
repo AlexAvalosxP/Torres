@@ -5,7 +5,7 @@
 
 	$con = new mysqli('localhost','root','','animapp');
 
-	$query = "SELECT pass FROM usuario WHERE username = '$Username'";
+	$query = "SELECT pass, nombre, apellidos FROM usuario WHERE username = '$Username'";
 
 	$PassQuery = $con->query($query);
 
@@ -15,10 +15,11 @@
 
 	if($r > 0)
 	{
-		if ($Pass == $PassQuery->fetch_object()->pass)
+		$r2 = $PassQuery->fetch_object();
+		if ($Pass == $r2->pass)
 		{
 			$passTrue = 1;
-			echo json_encode(array("pass"=>$passTrue));
+			echo json_encode(array("pass"=>$passTrue, "nombre"=>$r2->nombre . ' ' . $r2->apellidos));
 		}
 		else
 		{
