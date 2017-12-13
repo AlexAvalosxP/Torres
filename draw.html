@@ -24,30 +24,33 @@
 	<h3>Anchura</h3>
 	<div class="iconP" id="plus" onclick="plusWidth()"><i class="fa fa-plus" aria-hidden="true"></i></i></div>
 	<div class="iconP" id="minus" onclick="minusWidth()"><i class="fa fa-minus" aria-hidden="true"></i></i></div>
+	<input type="text"  id="selectedBrushWidth" class="infoDrawInput" value="3" disabled>
+	<input type="color" id="selectedColor" class="infoDrawInput" style="height: 10%" disabled>
 </div>
 <div id="paint">
-		<canvas id="myCanvas" border="1px" ontouchstart="tdown(event)" ontouchend="tup(event)" ontouchmove="tmove(event)"></canvas>
+		<canvas id="myCanvas" border="1px" ontouchstart="tdown(event)" ontouchend="tup(event)" ontouchmove="tmove(event)" onmouseover="showBrushPosition()"></canvas>
 </div>
 <div id="rightControl">
-	<div class="iconP" id="black" onclick="changeColor(this.id)" style="background:black"></div>
-	<div class="iconP" id="grey" onclick="changeColor(this.id)" style="background:grey"></div>
-	<div class="iconP" id="#54250A" onclick="changeColor(this.id)" style="background:#54250A"></div>
-	<div class="iconP" id="brown" onclick="changeColor(this.id)" style="background:brown"></div>
-	<div class="iconP" id="red" onclick="changeColor(this.id)" style="background:red"></div>
-	<div class="iconP" id="orange" onclick="changeColor(this.id)" style="background:orange"></div>
-	<div class="iconP" id="yellow" onclick="changeColor(this.id)" style="background:yellow"></div>
-	<div class="iconP" id="green" onclick="changeColor(this.id)" style="background:green"></div>
-	<div class="iconP" id="#36AB9C" onclick="changeColor(this.id)" style="background:#36AB9C"></div>
-	<div class="iconP" id="#AEF7FB" onclick="changeColor(this.id)" style="background:#AEF7FB"></div>
-	<div class="iconP" id="blue" onclick="changeColor(this.id)" style="background:blue"></div>
-	<div class="iconP" id="purple" onclick="changeColor(this.id)" style="background:purple"></div>
-	<div class="iconP" id="#F11D7C" onclick="changeColor(this.id)" style="background:#F11D7C"></div>
-	<div class="iconP" id="pink" onclick="changeColor(this.id)" style="background:pink"></div>
+	<div class="iconP" id="#000000" onclick="changeColor(this.id)" style="background:black"></div>
+	<div class="iconP" id="#808080" onclick="changeColor(this.id)" style="background:grey"></div>
+	<div class="iconP" id="#54270A" onclick="changeColor(this.id)" style="background:#54270A"></div>
+	<div class="iconP" id="#A52E2A" onclick="changeColor(this.id)" style="background:brown"></div>
+	<div class="iconP" id="#FF1A00" onclick="changeColor(this.id)" style="background:red"></div>
+	<div class="iconP" id="#FEA803" onclick="changeColor(this.id)" style="background:orange"></div>
+	<div class="iconP" id="#FBFF11" onclick="changeColor(this.id)" style="background:yellow"></div>
+	<div class="iconP" id="#008106" onclick="changeColor(this.id)" style="background:green"></div>
+	<div class="iconP" id="#32AB9C" onclick="changeColor(this.id)" style="background:#32AB9C"></div>
+	<div class="iconP" id="#AEF6FB" onclick="changeColor(this.id)" style="background:#AEF6FB"></div>
+	<div class="iconP" id="#3800FE" onclick="changeColor(this.id)" style="background:blue"></div>
+	<div class="iconP" id="#82007F" onclick="changeColor(this.id)" style="background:purple"></div>
+	<div class="iconP" id="#F3227B" onclick="changeColor(this.id)" style="background:#F3227B"></div>
+	<div class="iconP" id="#FFC1CB" onclick="changeColor(this.id)" style="background:pink"></div>
+	<input type="color" id="custom" class="iconP" onchange="changeColor(this.id)" style="width:120px">
 </div>
 
 <button id="postDraw" onclick="postDraw()">¡Publicar!</button>
 
-<a id="download" 
+<a id="download"
   onclick="var download = document.getElementById('download');
   download.href = document.getElementById('myCanvas').toDataURL();
   download.download='imageName.png'">
@@ -141,7 +144,7 @@ Save Canvas Image</a>
 
 	function tmove(e)
 	{
-		getPosTouch();       
+		getPosTouch();
 	}
 
 
@@ -169,20 +172,25 @@ Save Canvas Image</a>
 
 
 	function changeColor(id)
-	{	
+	{
 		console.log(id);
-		if ( id == '#000000')
+
+		if (id == 'custom')
 		{
-			ctx.strokeStyle = colorNow;
+			id = document.getElementById('custom').value
+			document.getElementById('selectedColor').value = id;
 		}
 		else
 		{
-			ctx.strokeStyle = id;
-			if (id != '#FFFFFF')
-			{
-				colorNow = id;
-			}
+			document.getElementById('selectedColor').value = id;
 		}
+
+		ctx.strokeStyle = id;
+		if (id != '#FFFFFF')
+		{
+			colorNow = id;
+		}
+
 		var buttons = document.querySelectorAll('.iconP');
 
 		for (i = 0; i < buttons.length; i++)
@@ -192,33 +200,34 @@ Save Canvas Image</a>
 
 		if (id == '#000000' || id == '#FFFFFF')
 		{
-				if (id == '#000000')
-				{
-					document.getElementById('paintbrush').style.borderRadius = '30%';
-					document.getElementById(colorNow).style.borderRadius = '30%'; 
-				}
-				else
-				{
-					document.getElementById('eraser').style.borderRadius = '30%';
-					document.getElementById(colorNow).style.borderRadius = '30%'; 
-				}
-		} 
+			if (id == '#000000')
+			{
+				document.getElementById('paintbrush').style.borderRadius = '30%';
+				document.getElementById(colorNow).style.borderRadius = '30%';
+			}
+			else
+			{
+				document.getElementById('eraser').style.borderRadius = '30%';
+				document.getElementById(colorNow).style.borderRadius = '30%';
+			}
+		}
 		else
 		{
 			document.getElementById('paintbrush').style.borderRadius = '30%';
-			document.getElementById(id).style.borderRadius = '30%'; 
+			document.getElementById(id).style.borderRadius = '30%';
 		}
 	}
 
 	function plusWidth()
 	{
-		if (ctx.lineWidth < 15) 
+		if (ctx.lineWidth < 15)
 		{
 			ctx.lineWidth++;
 		}
 		console.log(ctx.lineWidth);
 		if (ctx.lineWidth == 15) { document.getElementById('plus').style.background = 'grey';} else {  document.getElementById('plus').style.background = '#40C3B1';}
 		if (ctx.lineWidth == 1) { document.getElementById('minus').style.background = 'grey';} else {  document.getElementById('minus').style.background = '#40C3B1';}
+		document.getElementById('selectedBrushWidth').value = ctx.lineWidth;
 	}
 
 	function minusWidth()
@@ -229,7 +238,21 @@ Save Canvas Image</a>
 		}
 		if (ctx.lineWidth == 15) { document.getElementById('plus').style.background = 'grey';} else {  document.getElementById('plus').style.background = '#40C3B1';}
 		if (ctx.lineWidth == 1) { document.getElementById('minus').style.background = 'grey';} else {  document.getElementById('minus').style.background = '#40C3B1';}
-		console.log(ctx.lineWidth);
+
+		document.getElementById('selectedBrushWidth').value = ctx.lineWidth;
+	}
+
+	function showBrushPosition()
+	{
+		canvas = document.getElementById('myCanvas');
+		if(ctx.strokeStyle != '#ffffff')
+		{
+			canvas.style.cursor = "url(img/brush.png), pointer";
+		}
+		else
+		{
+			canvas.style.cursor = "url(img/eraser.png), pointer";
+		}
 	}
 
 	function postDraw()

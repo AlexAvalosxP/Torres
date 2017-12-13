@@ -269,7 +269,7 @@ section
 
 .info-Post
 {
-	height: 80px; 
+	height: 80px;
 	background: none;
 }
 
@@ -314,7 +314,7 @@ section
 
 .command-Post
 {
-	height: 60px; 
+	height: 60px;
 	font-size: 1.2em !important;
 	color: white;
 	width: calc(95% + 6px);
@@ -425,7 +425,7 @@ section
 	z-index: -1;
 }
 
-.button-follow>h3	
+.button-follow>h3
 {
 	line-height: 50px;
 	text-align: center;
@@ -568,7 +568,7 @@ section
 
 canvas
 {
-	border: 2px solid var(--principal);	
+	border: 2px solid var(--principal);
 }
 
 #postDraw
@@ -705,5 +705,19 @@ canvas
 	color: var(--claro);
 	line-height: 60px;
 	text-align: center;
+	font-size: 1.5em;
+}
+
+.infoDrawInput
+{
+	background: rgba(255, 255, 255, 0);
+	position: relative;
+	float: left;
+	text-align: center;
+	width: 50%;
+	margin-left: 25%;
+	margin-top: 10%;
+	margin-bottom: 10%;
+	box-sizing: border-box;
 	font-size: 1.5em;
 }
