@@ -14,7 +14,7 @@
 	<i class="fa fa-cog" aria-hidden="true" id="menu" onclick="openMenu()"></i>
 	<i class="fa fa-envelope" aria-hidden="true" id="invitation" onclick="openInvitation()"></i>
 	<i class="fa fa-bell" aria-hidden="true" id="notification" onclick="openNotification()"></i>
-	<i class="fa fa-share-square-o leftB" aria-hidden="true" id="colbs" onclick="showColabs()"></i>
+
 	<h1 onclick="navegar('index.html')">AnimApp</h1>
 </nav>
 
@@ -50,7 +50,6 @@
 	<input type="color" id="custom" class="iconP" onchange="changeColor(this.id)" style="width:120px">
 </div>
 
-<button id="postDraw" onclick="postDraw()">¡Publicar!</button>
 
 <div class="desplegable2 oculto2"></div>
 
@@ -67,8 +66,8 @@
 
 <script>
 
-	var invitado;
-	var autor;
+	var invitado = localStorage.getItem('autor');
+	var autor = localStorage.getItem('colab');
 
 	window.addEventListener('load', verificarLog, true);
 	var socket = new WebSocket('ws://localhost:2222');

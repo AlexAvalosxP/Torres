@@ -1,3 +1,32 @@
+var socket = new WebSocket('ws://localhost:2222');
+
+	socket.onmessage =function(msj)
+	{
+		mensajeServidor = JSON.parse(msj.data);
+		console.log(mensajeServidor);
+
+		if(mensajeServidor.invitado == user)
+		{
+			setMenu = document.getElementById('invitation');
+			setMenu.style.color = 'red';
+			menu = document.querySelector('.desplegable');
+			menu.innerHTML+= "<div class='UserInfoMenu'>" + 
+			"<div class='menuImg'><img src='sources/user-default.jpg'></div>" +
+			"<div class='menuName'>" + mensajeServidor.autor + "</div>" +
+			"<div class='menuUsername'>Invitación a Colaborar</div>" +
+			"<div class='enviaInvitacion' id='" + mensajeServidor.autor + "' onclick='aceptaInvitacion(this.id)'>Aceptar</div>"
+			"</div>";
+		}
+
+	}
+
+	function aceptaInvitacion(id)
+	{
+		localStorage.setItem('autor', id);
+		localStorage.setItem('colab', localStorage.getItem('username'));
+		window.location.assign('drawColab.html');
+	}
+
 function navegar(direccion, id)
 {
 	window.location.assign(direccion);
@@ -147,10 +176,10 @@ function openInvitation()
 	menu = document.querySelector('.desplegable');
 
 	//Funcionalidad
-	menu.innerHTML = "<h1 id='titulo'>Invitaciones</h1>";
 
 	menu.classList.remove('oculto');
 	setMenu = document.getElementById('invitation');
+	setMenu.style.color = '#40C3B1'
 	setMenu.removeAttribute('onclick');
 	setMenu.setAttribute('onclick', 'closeInvitation()');
 }
