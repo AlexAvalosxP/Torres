@@ -21,7 +21,10 @@
 	}
 	else
 	{
-		echo $con->error . "<br />";
+		echo'<script type="text/javascript">
+        alert("El nombre de usuario ya ha sido utilizado");
+        window.location.href="../signup.html";
+        </script>';
 	}
 
  ?>

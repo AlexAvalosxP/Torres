@@ -324,15 +324,21 @@ function passCheck()
 	email = document.getElementById('Correo').value;
 	pass1 = document.getElementById('Pass1').value;
 	pass2 = document.getElementById('Pass2').value;
-
-	if(pass1 == pass2)
+	
+	if (nombre != '' && apellidos != '' && username != '' && email != '' && pass1 != '' && pass2 !='') {
+		if(pass1 == pass2)
+		{
+			document.getElementById("signupdata").submit();
+		}
+		else
+		{
+			document.getElementById('Pass1').style.border = '1px solid red';
+			document.getElementById('Pass2').style.border = '1px solid red';
+		}
+	} 
+	else 
 	{
-		document.getElementById("signupdata").submit();
-	}
-	else
-	{
-		document.getElementById('Pass1').style.border = '1px solid red';
-		document.getElementById('Pass2').style.border = '1px solid red';
+		alert('Llena todos los espacios');
 	}
 }
 
