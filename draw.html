@@ -13,7 +13,7 @@
 <nav class="barra">
 	<i class="fa fa-cog" aria-hidden="true" id="menu" onclick="openMenu()"></i>
 	<i class="fa fa-envelope" aria-hidden="true" id="invitation" onclick="openInvitation()"></i>
-	<i class="fa fa-bell" aria-hidden="true" id="notification" onclick="openNotification()"></i>
+	
 	<i class="fa fa-share-square-o leftB" aria-hidden="true" id="colbs" onclick="showColabs()"></i>
 	<h1 onclick="navegar('index.html')">AnimApp</h1>
 </nav>
@@ -60,6 +60,7 @@
 	<input type="text" name="img" id="my_hidden" hidden>
 	<input type="text" name="img2" id="my_hidden3" hidden>
 	<input type="text" name="username" id="my_hidden2" hidden>
+	<input type="text" name="usernameColb" id="my_hidden4" hidden>
 
 </form>
 
@@ -69,6 +70,7 @@
 
 	var invitado;
 	var autor;
+	var colaboracion = false;
 
 	window.addEventListener('load', verificarLog, true);
 	var socket = new WebSocket('ws://localhost:2222');
@@ -96,8 +98,8 @@
 		mCanvas.width = width;
 		mCanvas.height = width / 2;
 
-		//ctxM.fillStyle = '#C9EDE9';
-		//ctxM.fillRect(0,0, mCanvas.width, mCanvas.height);
+		ctxM.fillStyle = '#FFFFFF';
+		ctxM.fillRect(0,0, mCanvas.width, mCanvas.height);
 
 		//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -300,6 +302,23 @@
 		
 		document.getElementById('my_hidden').value = canvas3.toDataURL('image/png');
 		document.getElementById('my_hidden2').value = localStorage.getItem('username');
+		
+
+		if (colaboracion == false)
+		{
+				document.getElementById('my_hidden4').value = 'none';
+		}
+		else
+		{
+				document.getElementById('my_hidden4').value = invitado;
+		}
+
+			confir = {
+			'conf': 'si',
+			'invitado': invitado
+		}
+		socket.send(JSON.stringify(confir));
+
 		document.forms["form1"].submit();
 
 		/*
@@ -356,11 +375,13 @@
 	{
 		invitado = id;
 		autor = localStorage.getItem('username')
+		colaboracion = true;
 		users = {
 			'autor': autor,
 			'invitado': id
 		}
 		socket.send(JSON.stringify(users));
+		closeColabs();
 	}
 
 	function closeColabs()

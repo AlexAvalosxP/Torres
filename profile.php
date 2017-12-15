@@ -13,7 +13,7 @@
 <nav class="barra">
 	<i class="fa fa-cog" aria-hidden="true" id="menu" onclick="openMenu()"></i>
 	<i class="fa fa-envelope" aria-hidden="true" id="invitation" onclick="openInvitation()"></i>
-	<i class="fa fa-bell" aria-hidden="true" id="notification" onclick="openNotification()"></i>
+	
 	<i class="fa fa-pencil-square-o leftB" aria-hidden="true" onclick="draw()"></i>
 	<h1 onclick="navegar('index.html')">AnimApp</h1>
 </nav>

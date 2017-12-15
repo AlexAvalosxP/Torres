@@ -2,6 +2,7 @@
 
 	$img = $_POST['img'];
 	$username = $_POST['username'];
+	$invitado = $_POST['usernameColb'];
 
 	//Guardado de Imagen
 
@@ -51,6 +52,28 @@
 
 	$query2 = "INSERT INTO usuariospost VALUES('', $id[0], $newIdP, 1)";
 
+		if ($invitado != 'none')
+		{
+			$query2x = "SELECT idUsuario FROM usuario WHERE username = '$invitado'";
+			$resx = $con->query($query2x);
+			$idx = $resx->fetch_array();
+			$queryInv = "INSERT INTO usuariospost VALUES('', $idx[0], $newIdP, 2)";
+			$con->query($query2);
+			$con->query($queryInv);
+			echo'<script type="text/javascript">
+        alert("¡Post Publicado!");
+        window.location.href="../index.html";
+        </script>';	
+		}
+		else
+		{
+			$con->query($query2);
+			echo'<script type="text/javascript">
+        alert("¡Post Publicado!");
+        window.location.href="../index.html";
+        </script>';
+		}
+			/*
 	if($con->query($query2))
 	{
 
@@ -64,5 +87,5 @@
 	{
 		echo $con->error . "<br />";
 	}
-
+*/
  ?>

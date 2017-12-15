@@ -1,0 +1,8 @@
+Equipo:
+Alejandro Ávalos Fernández
+Luidwing Andrés Martinez de Jesús
+Derian Jair Hernández Lira
+
+Consideraciones:
+El poryecto funciona sobre un servidor de Apache (xampp), con una base de datos de mysql, adicional a esto un servidor por medio de node js / websockets
+para la comunicación en tiempo real de la herramienta de dibujo.
