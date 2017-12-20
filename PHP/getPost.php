@@ -29,6 +29,10 @@
 		 	}
 		 }
 
+		 $comms = "SELECT count(*) FROM comentario WHERE idPost = $post->idPost";
+		$respuesta10 = $conexion->query($comms);
+		$numComs = $respuesta10->fetch_array();
+
 		//if ($like == null) { $like = 0; }
 		array_push($arreglo, array(
 			"id"=>$post->idPost,
@@ -38,7 +42,8 @@
 			"likes"=>mysqli_num_rows($respuesta3),
 			"nombre"=> $nombre->nombre . ' ' . $nombre->apellidos,
 			"username" => $nombre->username,
-			"likeBool" => $likeBool
+			"likeBool" => $likeBool,
+			"numCom" => $numComs[0]
 		));
 	}
 	//IMPRIMIR LA RESPUESTA EN JSON

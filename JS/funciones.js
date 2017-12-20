@@ -1,3 +1,4 @@
+//<<<<<<<<<<<<<<<<< WEB SOCKET >>>>>>>>>>>>>>>>>>>
 var socket = new WebSocket('ws://localhost:2222');
 
 	socket.onmessage =function(msj)
@@ -128,7 +129,7 @@ function cargarPosts(){
 			{
 				div = div + '<div class="like" id="' + post[i].id + '" onclick="likePost(this.id)"><i class="fa fa-heart-o" aria-hidden="true"></i><h2 id="numlikes' + post[i].id + '">' + post[i].likes + '</h2><h3>¡Me Anima!</h3></div>';
 			}
-			div = div + '<div class="comment" id="' + post[i].id + '" onclick="commentPost(this.id)"><i class="fa fa-comment-o" aria-hidden="true"></i><h2 id="numComents">0</h2><h3>Comentar</h3></div>' +
+			div = div + '<div class="comment" id="' + post[i].id + '" onclick="commentPost(this.id)"><i class="fa fa-comment-o" aria-hidden="true"></i><h2 id="numComents">' + post[i].numCom + '</h2><h3>Comentar</h3></div>' +
 		'</div>';
 
 			
@@ -147,7 +148,7 @@ function eliminarPub(id)
 function openMenu()
 {
 	closeInvitation();
-	closeNotification();
+
 	menu = document.querySelector('.desplegable');
 	user = localStorage.getItem('username');
 	name = localStorage.getItem('name');
@@ -158,7 +159,7 @@ function openMenu()
 		menu.innerHTML= "<div class='UserInfoMenu'>" + 
 			"<div class='menuImg'><img src='sources/user-default.jpg'></div>" +
 			"<div class='menuName'>" + name + "</div>" +
-			"<div class='menuUsername'>" + user + "</div>" +
+			"<div class='menuUsername' onclick='navegar(\"profile.php?u=" + user + "\")'>" + user + "</div>" +
 			"</div>" +
 			"<div class='logOut' onclick='logout()'>Cerrar Sesión</div>";
 
@@ -181,9 +182,8 @@ function closeMenu()
 function openInvitation()
 {
 	closeMenu();
-	closeNotification();
 
-	menu = document.querySelector('.desplegable');
+	menu = document.querySelector('.desplegableNot');
 
 	//Funcionalidad
 
@@ -196,36 +196,11 @@ function openInvitation()
 
 function closeInvitation()
 {
-	menu = document.querySelector('.desplegable');
+	menu = document.querySelector('.desplegableNot');
 	menu.classList.add('oculto');
 	setMenu = document.getElementById('invitation');
 	setMenu.removeAttribute('onclick');
 	setMenu.setAttribute('onclick', 'openInvitation()');
-}
-
-
-function openNotification()
-{
-	closeInvitation();
-	closeMenu();
-	menu = document.querySelector('.desplegable');
-
-	//Funcionalidad
-	menu.innerHTML = "<h1 id='titulo'>Notificaciones</h1>";
-
-	menu.classList.remove('oculto');
-	setMenu = document.getElementById('notification');
-	setMenu.removeAttribute('onclick');
-	setMenu.setAttribute('onclick', 'closeNotification()');
-}
-
-function closeNotification()
-{
-	menu = document.querySelector('.desplegable');
-	menu.classList.add('oculto');
-	setMenu = document.getElementById('notification');
-	setMenu.removeAttribute('onclick');
-	setMenu.setAttribute('onclick', 'openNotification()');
 }
 
 function commentPost(id)
@@ -242,11 +217,13 @@ function cargarPostX(id)
 	Ajax.onreadystatechange = function(){
 		if (Ajax.readyState == 4 && Ajax.status == 200){
 			post = JSON.parse(Ajax.responseText);
-			document.getElementById('user-name').innerHTML = post[0].nombre;
+			un = document.getElementById('user-name');
+			un.innerHTML = post[0].nombre;
+			un.setAttribute("onclick", "navegar('profile.php?u=" + post[0].username + "')")
 			document.getElementById('pub-time').innerHTML = post[0].fecha;
 			document.getElementById('img').src = 'sources/posts/' + post[0].dibujo;
 			document.getElementById('numlikes').innerHTML = post[0].likes;
-			document.getElementById('numComents').innerHTML = 0;
+			document.getElementById('numComents').innerHTML = post[0].numCom;
 			document.getElementById('numlikes').innerHTML = post[0].likes;
 			document.getElementById('numlikes').id = 'numlikes' + id;
 			if(post[0].likeBool == 1)
@@ -279,6 +256,7 @@ function cargarPostX(id)
 				'<textarea id="commentary"></textarea>' +
 				'<i class="fa fa-arrow-circle-right" aria-hidden="true" onclick="sendComment()"></i>' +
 			'</div>;';
+			document.getElementById('numComents').innerHTML = comment[i].numCom;
 		}
 	}
 
@@ -355,6 +333,13 @@ function passCheck()
 function cargarPerfil(id)
 {
 	user = localStorage.getItem('username');
+
+	if (id == user)
+	{
+		follow = document.querySelector('.button-follow');
+		follow.parentNode.removeChild(follow);
+	}
+
 	Ajax = new XMLHttpRequest();
 	Ajax.open('GET','php/postsPerfil.php?idU=' + id + '&username=' + user);
 	Ajax.send();
@@ -382,17 +367,51 @@ function cargarPerfil(id)
 			{
 				div = div + '<div class="like" id="' + post[i].id + '" onclick="likePost(this.id)"><i class="fa fa-heart-o" aria-hidden="true"></i><h2 id="numlikes' + post[i].id + '">' + post[i].likes + '</h2><h3>¡Me Anima!</h3></div>';
 			}
-			div = div + '<div class="comment" id="' + post[i].id + '" onclick="commentPost(this.id)"><i class="fa fa-comment-o" aria-hidden="true"></i><h2 id="numComents">0</h2><h3>Comentar</h3></div>'
+			div = div + '<div class="comment" id="' + post[i].id + '" onclick="commentPost(this.id)"><i class="fa fa-comment-o" aria-hidden="true"></i><h2 id="numComents">' + post[i].numCom + '</h2><h3>Comentar</h3></div>'
 		'</div>' +
 		'</div>"';
 		document.querySelector('section').innerHTML += div;
 
 		document.getElementById('profile-user').innerHTML = post[i].nombreUs;
 		document.getElementById('profile-time').innerHTML = "Miembro desde: " + post[i].fechaReg;
-		document.getElementById('profile-pub').innerHTML = "Publicaciones: " + post[i].numPosts;
-		document.getElementById('profile-followers').innerHTML = "Seguidores: " + post[i].numFoll;
+
+		AjaxData = new XMLHttpRequest();
+		AjaxData.open('GET','php/data.php?username=' + id + '&idAct=' + user);
+		AjaxData.send();
+		AjaxData.onreadystatechange = function(){
+		if (AjaxData.readyState == 4 && AjaxData.status == 200){
+			data = JSON.parse(AjaxData.responseText);
+
+			document.getElementById('profile-pub').innerHTML = "Publicaciones: " + data.numPosts;
+			document.getElementById('profile-followers').innerHTML = "Seguidores: " + data.numFollow;
+			if (data.follow == true)
+			{
+				follow = document.querySelector('.button-follow');
+				follow.style.background = 'black';
+				follow.removeAttribute('onclick');
+			}
 		}
 		}
+		}
+	}
+	}	
+}
+
+function follow(id)
+{
+	user = localStorage.getItem('username');
+	console.log('x');
+	AjaxFollow = new XMLHttpRequest();
+	AjaxFollow.open('GET','php/follow.php?idR=' + id + '&idD=' + user);
+	AjaxFollow.send();
+	AjaxFollow.onreadystatechange = function(){
+	if (AjaxFollow.readyState == 4 && AjaxFollow.status == 200)
+	{
+		follow = document.querySelector('.button-follow');
+		follow.style.background = 'black';
+		follow.removeAttribute('onclick');
+		window.location.reload();
+	}
 	}	
 }
 

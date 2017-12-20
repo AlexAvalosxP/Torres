@@ -425,6 +425,7 @@ section
 	border-radius: 20px;
 	box-shadow: 3px 3px 15px rgba(33,103,95,0.60);
 	z-index: -1;
+	background: var(--principal);
 }
 
 .button-follow>h3
@@ -434,7 +435,6 @@ section
 	width: 200px;
 	height: 50px;
 	font-size: 2.5em;
-	background: var(--principal);
 	color: white;
 	border-radius: 20px;
 }
@@ -533,6 +533,17 @@ section
 }
 
 .desplegable
+{
+	position: fixed;
+	background: rgba(33,103,95,0.35);
+	top: 70px;
+	margin-left: 60%;
+	height: calc(100% - 70px);
+	width: 40%;
+	transition: 0.3s all;
+}
+
+.desplegableNot
 {
 	position: fixed;
 	background: rgba(33,103,95,0.35);

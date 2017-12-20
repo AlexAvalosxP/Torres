@@ -22,7 +22,9 @@
 		$respuesta3 = $conexion->query($likes);
 		//$like = $respuesta3->fetch_array();
 
-
+		$comms = "SELECT count(*) FROM comentario WHERE idPost = $post->idPost";
+		$respuesta10 = $conexion->query($comms);
+		$numComs = $respuesta10->fetch_array();
 
 		$likeBool = 0;		
 		 while($row = $respuesta3->fetch_assoc()) {
@@ -45,7 +47,8 @@
 			"nombreUs"=> $id[1] . ' ' . $id[2],
 			"fechaReg"=> $id[3],
 			"numFoll"=> $id[4],
-			"numPosts"=> $id[5]
+			"numPosts"=> $id[5],
+			"numCom" => $numComs[0]
 		));
 	}
 	//IMPRIMIR LA RESPUESTA EN JSON

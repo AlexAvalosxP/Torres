@@ -41,6 +41,7 @@
 <section>
 
 <div class="desplegable oculto"></div>
+<div class="desplegableNot oculto"></div>
 
 <input type="text" id="idP" value="<?php echo $_GET['id']; ?>" hidden>
 

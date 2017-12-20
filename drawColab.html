@@ -54,6 +54,7 @@
 <div class="desplegable2 oculto2"></div>
 
 <div class="desplegable oculto"></div>
+<div class="desplegableNot oculto"></div>
 
 <form action="php/postDraw.php" method="POST" name="form1">
 	<input type="text" name="img" id="my_hidden" hidden>
@@ -70,6 +71,8 @@
 	var autor = localStorage.getItem('colab');
 
 	window.addEventListener('load', verificarLog, true);
+
+	//<<<<<<<<<<<<<<<<< WEB SOCKET >>>>>>>>>>>>>>>>>>>
 	var socket = new WebSocket('ws://localhost:2222');
 
 	var colorNow = '#000000';

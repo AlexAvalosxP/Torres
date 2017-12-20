@@ -25,13 +25,14 @@
 	<h3 id="profile-followers">Seguidores: 0</h3>
 </div>
 
-<div class="button-follow" onclick="follow()"><h3>Follow</h3></div>
+<div class="button-follow" id="<?php echo $_GET['u'];?>" onclick="follow(this.id)"><h3>Follow</h3></div>
 
 <section>
 
 <section>
 
 <div class="desplegable oculto"></div>
+<div class="desplegableNot oculto"></div>
 
 <input type="text" hidden value="<?php echo $_GET['u'];?>" id="id">
 
