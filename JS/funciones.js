@@ -219,7 +219,7 @@ function cargarPostX(id)
 			post = JSON.parse(Ajax.responseText);
 			un = document.getElementById('user-name');
 			un.innerHTML = post[0].nombre;
-			un.setAttribute("onclick", "navegar('profile.php?u=" + post[0].username + "')")
+			un.setAttribute("onclick", "navegar('profile.php?u=" + post[0].username + "')");
 			document.getElementById('pub-time').innerHTML = post[0].fecha;
 			document.getElementById('img').src = 'sources/posts/' + post[0].dibujo;
 			document.getElementById('numlikes').innerHTML = post[0].likes;
