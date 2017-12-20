@@ -1,18 +1,18 @@
 <?php 
 
-	$conexion = new mysqli('localhost','root','','animapp');
+	require('conexion.php');
 	
 	$idP = $_GET['idP'];
 
 	$comments = "SELECT * FROM comentario WHERE idPost = $idP";
-	$respuesta = $conexion->query($comments);
+	$respuesta = $con->query($comments);
 	$arreglo = array();
 	
 	
 	while($comment = $respuesta->fetch_assoc()) 
 	{
 		$user = "SELECT nombre, apellidos, count(*) FROM usuario WHERE idUsuario = " . $comment['idUsuarioD'];
-		$respuesta2 = $conexion->query($user);
+		$respuesta2 = $con->query($user);
 		$name = $respuesta2->fetch_array();
 
 		array_push($arreglo, array(

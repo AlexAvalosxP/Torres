@@ -1,22 +1,22 @@
 <?php
-	$conexion = new mysqli('localhost','root','','animapp');
+	require('conexion.php');
 	
 	$idP = $_GET['idP'];
 
 	$usernameAct = $_GET['username'];
 	$query3 = "SELECT idUsuario FROM usuario WHERE username = '$usernameAct'";
-	$respuesta5 = $conexion->query($query3);
+	$respuesta5 = $con->query($query3);
 	$idAct = $respuesta5->fetch_array();
 
 	$posts = "SELECT p.*, up.idUsuario FROM post p, usuariospost up WHERE p.idPost = up.idPost AND p.idPost = $idP";
-	$respuesta = $conexion->query($posts);
+	$respuesta = $con->query($posts);
 	$arreglo = array();
 	while($post = $respuesta->fetch_object()) {
 		$autor = "SELECT u.nombre, u.apellidos, u.username FROM usuario u, usuariospost up WHERE u.idUsuario = up.idUsuario AND up.idPost = $post->idPost";
-		$respuesta2 = $conexion->query($autor);
+		$respuesta2 = $con->query($autor);
 		$nombre = $respuesta2->fetch_object();
 		$likes = "SELECT idUsuario FROM likePost WHERE idPost = $post->idPost";
-		$respuesta3 = $conexion->query($likes);
+		$respuesta3 = $con->query($likes);
 		//$like = $respuesta3->fetch_array();
 
 
@@ -30,7 +30,7 @@
 		 }
 
 		 $comms = "SELECT count(*) FROM comentario WHERE idPost = $post->idPost";
-		$respuesta10 = $conexion->query($comms);
+		$respuesta10 = $con->query($comms);
 		$numComs = $respuesta10->fetch_array();
 
 		//if ($like == null) { $like = 0; }

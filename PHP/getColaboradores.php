@@ -1,11 +1,11 @@
 <?php 
 
-	$conexion = new mysqli('localhost','root','','animapp');
+	require('conexion.php');
 	
 	$idU = $_GET['idU'];
 
 	$query3 = "SELECT idUsuario, nombre, apellidos, username FROM usuario WHERE username != '$idU'";
-	$respuesta5 = $conexion->query($query3);
+	$respuesta5 = $con->query($query3);
 	
 	$arreglo = array();
 

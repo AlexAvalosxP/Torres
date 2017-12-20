@@ -28,7 +28,7 @@
 	date_default_timezone_set('America/Mexico_City');
 	$Date = date('Y-m-d H:i:s');
 
-	$con = new mysqli('localhost','root','','animapp');
+	require('conexion.php');
 
 	$query2 = "SELECT idUsuario FROM usuario WHERE username = '$username'";
 	$res = $con->query($query2);

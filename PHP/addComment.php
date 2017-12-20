@@ -1,6 +1,6 @@
 <?php 
 
-	$conexion = new mysqli('localhost','root','','animapp');
+	require('conexion.php');
 	
 	$user = $_GET['un'];
 	$pId = $_GET['ps'];
@@ -10,11 +10,11 @@
 	$Date = date('Y-m-d');
 
 	$query3 = "SELECT idUsuario FROM usuario WHERE username = '$user'";
-	$respuesta5 = $conexion->query($query3);
+	$respuesta5 = $con->query($query3);
 	$idAct = $respuesta5->fetch_array();
 
 	$query = "INSERT INTO comentario VALUES('', $idAct[0], $pId, '$com', '$Date')";
 
-	$conexion->query($query);
+	$con->query($query);
 
  ?>

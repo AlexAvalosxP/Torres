@@ -3,7 +3,7 @@
 	$Username = $_POST['u'];
 	$Pass = $_POST['p'];
 
-	$con = new mysqli('localhost','root','','animapp');
+	require('conexion.php');
 
 	$query = "SELECT pass, nombre, apellidos FROM usuario WHERE username = '$Username'";
 

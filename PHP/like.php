@@ -3,7 +3,7 @@
 	$idP = $_GET['idPost'];
 	$idU = $_GET['idUser'];
 
-	$con = new mysqli('localhost','root','','animapp');
+	require('conexion.php');
 
 	$query2 = "SELECT idUsuario FROM usuario WHERE username = '$idU'";
 	$respuesta = $con->query($query2);

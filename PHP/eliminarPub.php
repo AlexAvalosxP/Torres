@@ -3,7 +3,7 @@
 	$idP = $_GET['idP'];
 
 	$query = "DELETE FROM usuariospost WHERE idPost = $idP";
-	$con = new mysqli('localhost','root','','animapp');
+	require('conexion.php');
 
 	$query2 = "DELETE FROM likepost WHERE idPost = $idP";
 	$query4 = "DELETE FROM comentario WHERE idPost = $idP";
