@@ -8,7 +8,7 @@
 	$Pass = $_POST['p'];
 	$Date = date('Y-m-d');
 
-	$con = new mysqli('localhost','root','','animapp');
+	require('conexion.php');
 
 	$query = "INSERT INTO usuario(nombre, apellidos, username, email, pass, fechaRegistro) VALUES('$Nombre', '$Apellidos', '$Username', '$Email', '$Pass', '$Date')";
 

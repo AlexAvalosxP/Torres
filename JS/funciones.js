@@ -256,7 +256,7 @@ function cargarPostX(id)
 				'<textarea id="commentary"></textarea>' +
 				'<i class="fa fa-arrow-circle-right" aria-hidden="true" onclick="sendComment()"></i>' +
 			'</div>;';
-			document.getElementById('numComents').innerHTML = comment[i].numCom;
+			
 		}
 	}
 
