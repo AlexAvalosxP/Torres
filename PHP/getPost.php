@@ -15,21 +15,21 @@
 		$autor = "SELECT u.nombre, u.apellidos, u.username FROM usuario u, usuariospost up WHERE u.idUsuario = up.idUsuario AND up.idPost = $post->idPost";
 		$respuesta2 = $con->query($autor);
 		$nombre = $respuesta2->fetch_object();
-		$likes = "SELECT idUsuario FROM likePost WHERE idPost = $post->idPost";
+		$likes = "SELECT idUsuario FROM likepost WHERE idPost = $post->idPost";
 		$respuesta3 = $con->query($likes);
 		//$like = $respuesta3->fetch_array();
 
 
 
 		$likeBool = 0;		
-		 while($row = $respuesta3->fetch_assoc()) {
-		 	if ($row['idUsuario'] == $idAct[0])
+		 while($row = $respuesta3->fetch_object()) {
+		 	if ($row->idUsuario == $idAct[0])
 		 	{
 		 		$likeBool = 1;
 		 	}
 		 }
 
-		 $comms = "SELECT count(*) FROM comentario WHERE idPost = $post->idPost";
+		 $comms = "SELECT COUNT(*) FROM comentario WHERE idPost = $post->idPost";
 		$respuesta10 = $con->query($comms);
 		$numComs = $respuesta10->fetch_array();
 

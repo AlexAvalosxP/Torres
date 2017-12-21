@@ -10,7 +10,7 @@ var socket = new WebSocket('ws://localhost:2222');
 		{
 			setMenu = document.getElementById('invitation');
 			setMenu.style.color = 'red';
-			menu = document.querySelector('.desplegable');
+			menu = document.querySelector('.desplegableNot');
 			menu.innerHTML+= "<div class='UserInfoMenu'>" + 
 			"<div class='menuImg'><img src='sources/user-default.jpg'></div>" +
 			"<div class='menuName'>" + mensajeServidor.autor + "</div>" +

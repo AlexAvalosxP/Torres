@@ -11,7 +11,7 @@
 	
 	while($comment = $respuesta->fetch_assoc()) 
 	{
-		$user = "SELECT nombre, apellidos, count(*) FROM usuario WHERE idUsuario = " . $comment['idUsuarioD'];
+		$user = "SELECT nombre, apellidos, COUNT(*) FROM usuario WHERE idUsuario = " . $comment['idUsuarioD'];
 		$respuesta2 = $con->query($user);
 		$name = $respuesta2->fetch_array();
 

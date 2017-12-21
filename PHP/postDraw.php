@@ -50,14 +50,14 @@
 		echo $con->error . "<br />";
 	}
 
-	$query2 = "INSERT INTO usuariospost VALUES('', $id[0], $newIdP, 1)";
+	$query2 = "INSERT INTO usuariospost VALUES('', " . $id[0] . ", $newIdP, 1)";
 
 		if ($invitado != 'none')
 		{
 			$query2x = "SELECT idUsuario FROM usuario WHERE username = '$invitado'";
 			$resx = $con->query($query2x);
 			$idx = $resx->fetch_array();
-			$queryInv = "INSERT INTO usuariospost VALUES('', $idx[0], $newIdP, 2)";
+			$queryInv = "INSERT INTO usuariospost VALUES('', " . $idx[0] . ", $newIdP, 2)";
 			$con->query($query2);
 			$con->query($queryInv);
 			echo'<script type="text/javascript">

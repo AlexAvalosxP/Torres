@@ -11,24 +11,24 @@
 	$respuesta5 = $con->query($query3);
 	$idAct = $respuesta5->fetch_array();
 
-	$posts = "SELECT p.* FROM post p, usuariospost up WHERE p.idPost = up.idPost AND up.idUsuario = $id[0]";
+	$posts = "SELECT p.* FROM post p, usuariospost up WHERE p.idPost = up.idPost AND up.idUsuario = " . $id[0];
 	$respuesta = $con->query($posts);
 	$arreglo = array();
 	while($post = $respuesta->fetch_object()) {
 		$autor = "SELECT u.nombre, u.apellidos, u.username FROM usuario u, usuariospost up WHERE u.idUsuario = up.idUsuario AND up.idPost = $post->idPost";
 		$respuesta2 = $con->query($autor);
 		$nombre = $respuesta2->fetch_object();
-		$likes = "SELECT idUsuario FROM likePost WHERE idPost = $post->idPost";
+		$likes = "SELECT idUsuario FROM likepost WHERE idPost = $post->idPost";
 		$respuesta3 = $con->query($likes);
 		//$like = $respuesta3->fetch_array();
 
-		$comms = "SELECT count(*) FROM comentario WHERE idPost = $post->idPost";
+		$comms = "SELECT * FROM comentario WHERE idPost = $post->idPost";
 		$respuesta10 = $con->query($comms);
 		$numComs = $respuesta10->fetch_array();
 
 		$likeBool = 0;		
-		 while($row = $respuesta3->fetch_assoc()) {
-		 	if ($row['idUsuario'] == $idAct[0])
+		 while($row = $respuesta3->fetch_object()) {
+		 	if ($row->idUsuario == $idAct[0])
 		 	{
 		 		$likeBool = 1;
 		 	}
@@ -48,7 +48,7 @@
 			"fechaReg"=> $id[3],
 			"numFoll"=> $id[4],
 			"numPosts"=> $id[5],
-			"numCom" => $numComs[0]
+			"numCom" => mysqli_num_rows($respuesta10)
 		));
 	}
 	//IMPRIMIR LA RESPUESTA EN JSON
