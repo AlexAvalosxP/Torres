@@ -12,7 +12,7 @@
 	$respuesta6 = $con->query($query4);
 	$id2 = $respuesta6->fetch_array();
 
-	$postss = "INSERT INTO follow VALUES('', $id2[0], $id[0])";
+	$postss = "INSERT INTO follow(idUsuarioD, idUsuarioR) VALUES(" . $id2[0] . "," . $id[0] . ")";
 	if($con->query($postss))
 	{
 	

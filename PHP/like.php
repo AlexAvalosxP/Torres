@@ -12,7 +12,7 @@
 	echo $id[0];
 	echo $idP;
 
-	$query = "INSERT INTO likepost VALUES('', " . $id[0] .", $idP)";
+	$query = "INSERT INTO likepost(idUsuario, idPost) VALUES(" . $id[0] . ", " . $idP .")";
 
 	if($con->query($query))
 	{

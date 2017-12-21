@@ -13,7 +13,7 @@
 	$respuesta5 = $con->query($query3);
 	$idAct = $respuesta5->fetch_array();
 
-	$query = "INSERT INTO comentario VALUES('', " . $idAct[0] .", " . $pId . ", '" . $com . "', '" . $Date . "')";
+	$query = "INSERT INTO comentario(idUsuarioD, idPost, comentario, fechaPublic) VALUES(" . $idAct[0] .", " . $pId . ", '" . $com . "', '" . $Date . "')";
 
 	$con->query($query);
 
