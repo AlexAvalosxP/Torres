@@ -50,8 +50,15 @@
 		echo $con->error . "<br />";
 	}
 
-	$query2 = "INSERT INTO usuariospost VALUES('', " . $id[0] . ", $newIdP, 1)";
-
+	$query2 = "INSERT INTO usuariospost(idUsuario, idPost, tipoAutor) VALUES(" . $id[0] . ", " . $newIdP . ", 1)";
+	if($con->query($query2))
+	{
+	echo'<script type="text/javascript">
+        alert("¡Post Publicado!");
+        window.location.href="../index.html";
+        </script>';	
+    }
+		/*
 		if ($invitado != 'none')
 		{
 			$query2x = "SELECT idUsuario FROM usuario WHERE username = '$invitado'";
@@ -73,6 +80,7 @@
         window.location.href="../index.html";
         </script>';
 		}
+		*/
 			/*
 	if($con->query($query2))
 	{

@@ -1,5 +1,5 @@
 //<<<<<<<<<<<<<<<<< WEB SOCKET >>>>>>>>>>>>>>>>>>>
-var socket = new WebSocket('ws://localhost:2222');
+var socket = new WebSocket('ws://osorniovelazquez.ml:2222');
 
 	socket.onmessage =function(msj)
 	{
